@@ -24,6 +24,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -41,7 +43,7 @@ ROOT_URLCONF = 'task_manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'task_manager' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +82,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian'),
+]
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 TIME_ZONE = 'UTC'
 
@@ -88,7 +98,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-APP_ROOT = os.getenv('APP_ROOT', '/app')
+APP_ROOT = os.getenv('APP_ROOT', '')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(APP_ROOT, 'static')
