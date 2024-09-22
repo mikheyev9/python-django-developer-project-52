@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - hexlet_network
+
+  web:
+    build:
+      context: ./hexlet-code
+      dockerfile: Dockerfile
+    command: bash -c "poetry run python manage.py migrate && poetry run python manage.py collectstatic --noinput && poetry run gunicorn task_manager.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ./hexlet-code:/app
+      - /var/www/project/static:/app/static
+      - /var/www/project/media:/app/media
+    env_file:
+      - .env
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    networks:
+      - hexlet_network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      SERVER_HOST: ${SERVER_HOST}
+    volumes:
+      - /var/www/project/static:/app/static
+      - /var/www/project/media:/app/media
+    entrypoint: /bin/sh -c "/docker-entrypoint.d/entrypoint.sh"
+    depends_on:
+      - web
+    networks:
+      - hexlet_network
+
+networks:
+  hexlet_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

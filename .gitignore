@@ -1,0 +1,39 @@
+# Не игнорируйте папку миграций
+!*/migrations/*.py
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+
+# Virtual environments
+venv/
+.env
+.env.*
+
+# Poetry
+.mypy_cache/
+.pytest_cache/
+.dmypy.json
+dmypy.json
+# Pyright
+pyrightconfig.json
+
+# Django
+db.sqlite3
+media/
+static/
+*.log
+
+# MacOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Docker
+docker-compose.override.yml
+
+#local dirs
+hexlet-code/docker-compose.yml

@@ -1,0 +1,33 @@
+# Ignore the git directory
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.env
+.env.*
+
+# Ignore local SQLite database
+db.sqlite3
+
+# Ignore media and static files (usually handled outside of Docker)
+media/
+static/
+
+# Ignore test and coverage reports
+.coverage
+*.cover
+*.log
+
+# Ignore IDE and OS-specific files
+.DS_Store
+.vscode/
+
+# Ignore Docker Compose override files
+docker-compose.override.yml
