@@ -17,6 +17,6 @@ setup-directories-root:
 	@mkdir -p $(STATIC_DIR) $(MEDIA_DIR) $(LOG_DIR)
 	@chown -R $(USER_NAME):$(USER_NAME) $(STATIC_DIR) $(MEDIA_DIR) $(LOG_DIR)
 	@chmod -R 755 $(STATIC_DIR) $(MEDIA_DIR) $(LOG_DIR)
-	@sudo usermod -aG www-data $(USER_NAME)
+	@usermod -aG www-data $(USER_NAME)
 	@echo "Directories and permissions set up!"
 
