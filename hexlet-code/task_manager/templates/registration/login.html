@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {{ block.super }} - {{ _("Login") }}
+{% endblock %}
+
+{% block content %}
+    <h2>{% trans "Login" %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans "Login" %}</button>
+    </form>
+{% endblock %}
