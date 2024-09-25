@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}Confirm Delete Status{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{% trans "Confirm Delete Status" %}</h2>
+    <p>{% trans "Are you sure you want to delete the status" %} "{{ status.name }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Yes, delete" %}</button>
+        <a href="{% url 'status_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% if status %}Update Status{% else %}Create Status{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if status %}
+        <p>Created at: {{ status.created_at|date:"Y-m-d H:i:s" }}</p>
+        <p>Updated at: {{ status.updated_at|date:"Y-m-d H:i:s" }}</p>
+    {% endif %}
+    <button type="submit">{% if status %}Update{% else %}Create{% endif %}</button>
+</form>
+{% endblock %}

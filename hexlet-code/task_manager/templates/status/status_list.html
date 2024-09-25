@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Status List</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+        <th>Actions</th>
+    </tr>
+    {% for status in statuses %}
+    <tr>
+        <td>{{ status.id }}</td>
+        <td>{{ status.name }}</td>
+        <td>{{ status.created_at|date:"Y-m-d H:i:s" }}</td> <!-- Дата создания -->
+        <td>{{ status.updated_at|date:"Y-m-d H:i:s" }}</td> <!-- Дата изменения -->
+        <td>
+            <a href="{% url 'status_update' status.pk %}">Edit</a>
+            <a href="{% url 'status_delete' status.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'status_create' %}">Create New Status</a>
+{% endblock %}
